@@ -1,0 +1,40 @@
+apply plugin: 'java'
+
+sourceCompatibility = '1.8'
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+if (!hasProperty('mainClass')) {
+    ext.mainClass = ''
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven {
+        url "https://oss.sonatype.org/content/repositories/snapshots/"
+    }
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+    implementation "commons-cli:commons-cli:1.4"
+    implementation "org.apache.logging.log4j:log4j-slf4j-impl:2.12.1"
+    
+
+    implementation "ai.djl:api:0.10.0"
+//    implementation "ai.djl:basicdataset:0.10.0"
+//    implementation "ai.djl:model-zoo:0.10.0"
+//    implementation "ai.djl.mxnet:mxnet-model-zoo:0.10.0"
+    implementation "ai.djl.mxnet:mxnet-engine:0.10.0"
+    
+    implementation "net.java.dev.jna:jna:5.3.0"    
+   
+    
+    runtimeOnly "ai.djl.mxnet:mxnet-native-auto:1.7.0-backport"
+//    runtimeOnly "ai.djl.mxnet:mxnet-native-mkl:1.7.0-backport"    
+
+    
+    testCompile group: 'junit', name: 'junit', version: '4.10'
+ 
+
+}
